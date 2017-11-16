@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wno-invalid-offsetof -march=native -ffast-math -pthread -fdiagnostics-color=auto -O3 -DNDEBUG   CMakeFiles/Moss.dir/home/jetmate/programming/c++/moss/src/main.cpp.o  -o bin/Moss -rdynamic /usr/include/Urho3D/lib/libUrho3D.a -ldl -lm -lrt -lGL 

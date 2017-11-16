@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "taskName": "cmake",
+      "command": "rake",
+      "args": ["cmake"],
+      "options": {
+        "cwd": "${workspaceRoot}/tools"
+      },
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never"
+      }
+    },
+    {
+      "taskName": "make",
+      "command": "rake",
+      "args": ["make"],
+      "options": {
+        "cwd": "${workspaceRoot}/tools"
+      },
+      "group": "build",
+      "dependsOn": "cmake",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never"
+      }
+    },
+    {
+      "taskName": "run",
+      "command": "native-Build/bin/Moss",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": "make",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never"
+      }
+    }
+  ]
+}
