@@ -1,0 +1,17 @@
+[Thu Nov 16 21:59:18 2017] INFO: Opened log file Main.log
+[Thu Nov 16 21:59:18 2017] INFO: Created 7 worker threads
+[Thu Nov 16 21:59:18 2017] INFO: Added resource path /home/jetmate/programming/c++/moss/native-Build/bin/Data/
+[Thu Nov 16 21:59:18 2017] INFO: Added resource path /home/jetmate/programming/c++/moss/native-Build/bin/CoreData/
+[Thu Nov 16 21:59:18 2017] INFO: Set screen mode 1024x768 windowed monitor 0
+[Thu Nov 16 21:59:18 2017] INFO: Initialized input
+[Thu Nov 16 21:59:18 2017] INFO: Initialized user interface
+[Thu Nov 16 21:59:18 2017] INFO: Initialized renderer
+[Thu Nov 16 21:59:18 2017] WARNING: Could not get application preferences directory
+[Thu Nov 16 21:59:18 2017] INFO: Initialized engine
+Used resources:
+Textures/Ramp.png
+Textures/Spot.png
+Techniques/NoTexture.xml
+RenderPaths/Forward.xml
+Models/cube.ply.mdl
+Shaders/GLSL/LitSolid.glsl

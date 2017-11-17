@@ -1,0 +1,4 @@
+<material>
+    <texture unit="normal" name="textures/dirt.dds" />
+    <parameter name="MatSpecColor" value="0.3 0.3 0.3 16" />
+</material>

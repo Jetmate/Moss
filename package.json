@@ -1,0 +1,7 @@
+{
+  "name": "moss",
+  "private": true,
+  "dependencies": {
+    "parse-magica-voxel": "^1.0.3"
+  }
+}

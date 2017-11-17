@@ -10,9 +10,9 @@
       },
       "group": "build",
       "problemMatcher": [],
-      "presentation": {
-        "reveal": "never"
-      }
+      // "presentation": {
+      //   "reveal": "never"
+      // }
     },
     {
       "taskName": "make",
@@ -24,9 +24,9 @@
       "group": "build",
       "dependsOn": "cmake",
       "problemMatcher": [],
-      "presentation": {
-        "reveal": "never"
-      }
+      // "presentation": {
+      //   "reveal": "never"
+      // }
     },
     {
       "taskName": "run",
@@ -37,9 +37,9 @@
       },
       "dependsOn": "make",
       "problemMatcher": [],
-      "presentation": {
-        "reveal": "never"
-      }
+      // "presentation": {
+      //   "reveal": "never"
+      // }
     }
   ]
 }
