@@ -85,6 +85,8 @@ Urho3D/Resource/XMLFile.h
 -
 Urho3D/IO/Log.h
 -
+iostream
+-
 
 /home/jetmate/programming/c++/moss/src/main.cpp
 main.h

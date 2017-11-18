@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.pyx": "cython",
+    "functional": "cpp"
+  }
+}

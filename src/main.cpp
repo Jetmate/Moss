@@ -24,6 +24,8 @@ void Main::Start()
 
   // Hook up to the frame update events
   SubscribeToEvents();
+
+  // Hook up to the frame update events  SubscribeToEvents();
 }
 
 void Main::Stop()
@@ -37,10 +39,16 @@ void Main::CreateScene()
 
   scene_ = new Scene(context_);
 
-
   // Create the Octree component to the scene so that drawable objects can be rendered. Use default volume
   // (-1000, -1000, -1000) to (1000, 1000, 1000)
   scene_->CreateComponent<Octree>();
+
+  Node *lightNode = scene_->CreateChild("DirectionalLight");
+  lightNode->SetDirection(Vector3(0, -1, 0)); // The direction vector does not need to be normalized
+  lightNode->SetPosition(Vector3(0, 100, 0));
+  Light *light = lightNode->CreateComponent<Light>();
+  light->SetLightType(LIGHT_DIRECTIONAL);
+  light->SetRange(1000.0f);
 
   // Create a Zone component into a child scene node. The Zone controls ambient lighting and fog settings. Like the Octree,
   // it also defines its volume with a bounding box, but can be rotated (so it does not need to be aligned to the world X, Y
@@ -49,33 +57,85 @@ void Main::CreateScene()
   Zone *zone = zoneNode->CreateComponent<Zone>();
   // Set same volume as the Octree, set a close bluish fog and some ambient light
   zone->SetBoundingBox(BoundingBox(-1000.0f, 1000.0f));
-  zone->SetAmbientColor(Color(0.05f, 0.1f, 0.15f));
+  zone->SetAmbientColor(Color(1, 1, 1));
   zone->SetFogColor(Color(0.1f, 0.2f, 0.3f));
   zone->SetFogStart(10.0f);
   zone->SetFogEnd(100.0f);
 
-  // Create box StaticModels in the scene
-  const int NUM_OBJECTS = 100;
-  for (unsigned i = 0; i < NUM_OBJECTS; ++i)
-  {
-    Node *boxNode = scene_->CreateChild("Box");
-    boxNode->SetPosition(Vector3(0, 0, 10 * i));
+  // zone->SetLightMask(100)
 
+  // Create box StaticModels in the scene
+  // String types[] = {"cube.ply.mdl", "cube.obj.mdl", "cube.mc.ply.mdl"};
+  // for (int i = 0; i < sizeof(types) / sizeof(types[0]); i++)
+  // {
+  //   Node *boxNode = scene_->CreateChild("Box");
+  //   boxNode->SetPosition(Vector3(0, 0, 20 * i));
+
+  //   StaticModel *boxObject = boxNode->CreateComponent<StaticModel>();
+  //   boxObject->SetModel(cache->GetResource<Model>("Models/" + types[i]));
+  //   // boxObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
+  // }
+
+  JSONFile *jf = cache->GetResource<JSONFile>("Maps/file.json");
+  JSONValue &root = jf->GetRoot();
+  JSONObject json = root.GetObject();
+  JSONArray blocks = json["blocks"].GetArray();
+
+  for (RandomAccessIterator<JSONValue> it = blocks.Begin(); it != blocks.End(); ++it) {
+    JSONObject object = it->GetObject();
+
+    Node *boxNode = scene_->CreateChild("Box");
+    boxNode->SetPosition(Vector3(object["x"].GetInt() * 10, object["y"].GetInt() * 10, object["z"].GetInt() * 10));
     StaticModel *boxObject = boxNode->CreateComponent<StaticModel>();
-    boxObject->SetModel(cache->GetResource<Model>("Models/cube.ply.mdl"));
-    // boxObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
+    boxObject->SetModel(cache->GetResource<Model>("Models/cube.obj.mdl"));
+    boxObject->SetMaterial(cache->GetResource<Material>("Materials/cube.xml"));
   }
+
+  // for (RandomAccessIterator<Variant> it = blocks.Begin(); it != blocks.End(); ++it)
+  // {
+  //   URHO3D_LOGINFO(it->GetVariantMap()["x"]->GetString());
+  // }
+
+  // VariantMap json;
+  // for (JSONObjectIterator it = root.Begin(); it != root.End(); ++it)
+  // {
+  //   URHO3D_LOGINFO((String) it->second_.GetArray()[0].GetObject()["x"]->GetInt());
+  //   // for (JSONObjectIterator it2 = it->second_.Begin(); it2 != it->second_.End(); ++it2)
+  //   // {
+  //   //   URHO3D_LOGINFO((String) it2->second_.GetVariantMap().Keys().Size());
+  //   // }
+  //   // VariantVector vector = it->second_.GetVariantVector();
+  //   // URHO3D_LOGINFO((String) vector.Size());
+
+  //   // for (RandomAccessIterator<Variant> it2 = vector.Begin(); it2 < vector.End(); ++it2)
+  //   // {
+  //   //   // *it2 = it2->GetVariantMap();
+  //   //   URHO3D_LOGINFO((String) (*it2).GetVariantMapPtr()->Keys().Size());
+  //   // }
+  //   // json[it->first_] = vector;
+  // }
+
+  // Node *boxNode = scene_->CreateChild("Box");
+  // boxNode->SetPosition(Vector3(0, -10, 20));
+  // StaticModel *boxObject = boxNode->CreateComponent<StaticModel>();
+  // boxObject->SetModel(cache->GetResource<Model>("Models/cube.obj.mdl"));
+  // boxObject->SetMaterial(cache->GetResource<Material>("Materials/cube.xml"));
+
+  // boxNode = scene_->CreateChild("Box");
+  // boxNode->SetPosition(Vector3(0, -10, 40));
+  // boxObject = boxNode->CreateComponent<StaticModel>();
+  // boxObject->SetModel(cache->GetResource<Model>("Models/cube.obj.mdl"));
 
   // Create the camera. Let the starting position be at the world origin. As the fog limits maximum visible distance, we can
   // bring the far clip plane closer for more effective culling of distant objects
   cameraNode_ = scene_->CreateChild("Camera");
   Camera *camera = cameraNode_->CreateComponent<Camera>();
-  camera->SetFarClip(100.0f);
+  // camera->SetFarClip(50.0f);
 
   // Create a point light to the camera scene node
-  Light *light = cameraNode_->CreateComponent<Light>();
-  light->SetLightType(LIGHT_POINT);
-  light->SetRange(30.0f);
+  // Light* light = cameraNode_->CreateComponent<Light>();
+  // light->SetLightType(LIGHT_SPOT);
+  // light->SetRange(30.0f);
 }
 
 void Main::SetupViewport()

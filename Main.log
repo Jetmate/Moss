@@ -1,17 +1,21 @@
-[Thu Nov 16 21:59:18 2017] INFO: Opened log file Main.log
-[Thu Nov 16 21:59:18 2017] INFO: Created 7 worker threads
-[Thu Nov 16 21:59:18 2017] INFO: Added resource path /home/jetmate/programming/c++/moss/native-Build/bin/Data/
-[Thu Nov 16 21:59:18 2017] INFO: Added resource path /home/jetmate/programming/c++/moss/native-Build/bin/CoreData/
-[Thu Nov 16 21:59:18 2017] INFO: Set screen mode 1024x768 windowed monitor 0
-[Thu Nov 16 21:59:18 2017] INFO: Initialized input
-[Thu Nov 16 21:59:18 2017] INFO: Initialized user interface
-[Thu Nov 16 21:59:18 2017] INFO: Initialized renderer
-[Thu Nov 16 21:59:18 2017] WARNING: Could not get application preferences directory
-[Thu Nov 16 21:59:18 2017] INFO: Initialized engine
+[Fri Nov 17 23:24:01 2017] INFO: Opened log file Main.log
+[Fri Nov 17 23:24:01 2017] INFO: Created 7 worker threads
+[Fri Nov 17 23:24:01 2017] INFO: Added resource path /home/jetmate/programming/c++/moss/native-Build/bin/Data/
+[Fri Nov 17 23:24:01 2017] INFO: Added resource path /home/jetmate/programming/c++/moss/native-Build/bin/CoreData/
+[Fri Nov 17 23:24:01 2017] INFO: Set screen mode 1024x768 windowed monitor 0
+[Fri Nov 17 23:24:01 2017] INFO: Initialized input
+[Fri Nov 17 23:24:01 2017] INFO: Initialized user interface
+[Fri Nov 17 23:24:01 2017] INFO: Initialized renderer
+[Fri Nov 17 23:24:01 2017] WARNING: Could not get application preferences directory
+[Fri Nov 17 23:24:01 2017] INFO: Initialized engine
 Used resources:
 Textures/Ramp.png
 Textures/Spot.png
+Textures/cube.png
 Techniques/NoTexture.xml
+Techniques/Diff.xml
 RenderPaths/Forward.xml
-Models/cube.ply.mdl
+Maps/file.json
+Models/cube.obj.mdl
+Materials/cube.xml
 Shaders/GLSL/LitSolid.glsl
